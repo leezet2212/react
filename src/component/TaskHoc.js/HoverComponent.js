@@ -3,41 +3,44 @@ import React from 'react';
 //     return <img src="https://freetuts.net/public/logo/logo.png" alt="freetuts" />;
 // }
 
-const HoverComponent =(ImageComponent)=>{
-    return class extends React.Component{
-        constructor(props){
+const withCounter = (Component) => {
+    return class extends React.Component {
+        constructor(props) {
             super(props);
-            this.state={
-                opacity:1,
+            this.state = {
+                count: 0
             };
-            this.onMouseEnter=this.onMouseEnter.bind(this);
-            this.onMouseLeave=this.onMouseLeave.bind(this);
+            this.increment = this.increment.bind(this);
+            this.decrement = this.decrement.bind(this);
         }
-        onMouseEnter(){
+        increment() {
             this.setState({
-                opacity:0.5,
+                count: this.state.count + 1
             })
         }
-        onMouseLeave(){
+        decrement() {
+            console.log("COUNTER", this.state.count)
+
             this.setState({
-                opacity:1,
+                count: this.state.count - 1
             })
         }
-    
-        render(){
-            return(
-                <div style={{opacity:this.state.opacity}}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
-                >
-                    <ImageComponent/>
+
+        render() {
+            return (
+                <div >
+
+                    <h1>counter hoc: {this.state.count}</h1>
+                    <Component
+                        increment={this.increment}
+                        decrement={this.decrement} />
                 </div>
             )
         }
     }
 }
 
-export default HoverComponent;
+export default withCounter;
 // export default class HoverComponent extends React.Component{
 //     constructor(props){
 //         super(props);
