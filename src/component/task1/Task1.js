@@ -3,22 +3,29 @@ import './task1.css';
 
 const AppContext = React.createContext()
 class AppProvider extends Component {
- state = {
-    number : 10,
-    inc: () => {
-      this.setState({number: this.state.number + 1})
+  constructor(props){
+    super(props);
+    this.state={
+      name:'hello'
     }
   }
  render() {
-    return <AppContext.Provider value={this.state}>
-      {this.props.children}
-    </AppContext.Provider>
+    return (
+    <>
+    <AppProvider.Provider value={this.state.name}>
+          <h1>{this.state.name}</h1>
+        <Blue>
+          <Green></Green>
+        </Blue>
+    </AppProvider.Provider>
+    </>
+    )
   }
 }
 const Green = () => (
   <div className="green">
      <AppContext.Consumer>
-        {(context) => context.number}
+        {(context) => context.name}
       </AppContext.Consumer>
   </div>
 )
@@ -30,6 +37,8 @@ const Blue = () => (
     <Green />
   </div>
 )
+export default AppProvider
+
 // import React, { Component } from 'react'
 
 
