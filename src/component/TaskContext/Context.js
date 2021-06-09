@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import "./task1.css";
 
 const AppContext = React.createContext();
@@ -38,6 +38,7 @@ class AppProvider extends Component {
   }
 }
 class Blue extends Component {
+  static contextType = AppContext;
   render() {
     return (
       <button
@@ -50,12 +51,13 @@ class Blue extends Component {
     );
   }
 }
-Blue.contextType = AppContext;
+// Blue.contextType = AppContext;
 
 class Green extends Component {
+  static contextType = AppContext;
   render() {
     return <p>{this.context.number}</p>;
   }
 }
-Green.contextType = AppContext;
+// Green.contextType = AppContext;
 export default AppProvider;
