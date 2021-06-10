@@ -5,9 +5,9 @@ import AddReduce from './AddReduce';
 
 const initialState ={
     users:[
-        {id:1,name:'nhât linh', email:'linh@gmail.com'},
-        {id:2,name:'khắc huy', email:'huy@gmail.com'},
-        {id:3,name:'ĐOAN', email:'doan@gmail.com'},
+        // {id:1,name:'nhât linh', email:'linh@gmail.com'},
+        // {id:2,name:'khắc huy', email:'huy@gmail.com'},
+        // {id:3,name:'ĐOAN', email:'doan@gmail.com'},
     ]
 }
 //create context 
@@ -25,10 +25,25 @@ export const GlobalProvider = ({children})=>{
         })
     }
 
+    const addUser =(user)=>{
+        dispatch({
+            type: 'ADD-USER',
+            payload:user
+        })
+    }
+
+    const editUser = (user)=>{
+        dispatch({
+            type: 'EDIT-USER',
+            payload:user 
+        })
+    }
     return(
         <GlobalState.Provider value={{
             users:state.users,
-            removeUser:removeUser
+            removeUser:removeUser,
+            addUser,
+            editUser
         }}>
             {children}
         </GlobalState.Provider>
